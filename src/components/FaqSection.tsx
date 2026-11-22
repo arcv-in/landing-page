@@ -55,18 +55,18 @@ export function FaqSection() {
               >
                 <button
                   onClick={() => setOpenIndex(isOpen ? null : idx)}
-                  className="w-full px-7 sm:px-8 py-6 sm:py-6.5 min-h-[76px] sm:min-h-[82px] text-left font-bold text-base sm:text-lg text-white flex items-center justify-between gap-5 hover:bg-white/[0.03] transition-colors"
+                  className="w-full px-5 sm:px-8 py-5 sm:py-6.5 min-h-[72px] sm:min-h-[82px] text-left font-bold text-sm sm:text-lg text-white flex items-center justify-between gap-4 hover:bg-white/[0.03] transition-colors"
                 >
                   <span className="leading-snug">{faq.question}</span>
                   <ChevronDown
-                    className={`w-5 h-5 text-gray-400 shrink-0 transition-transform duration-200 ${
+                    className={`w-4 sm:w-5 h-4 sm:h-5 text-gray-400 shrink-0 transition-transform duration-200 ${
                       isOpen ? "rotate-180 text-[#F0FD63]" : ""
                     }`}
                   />
                 </button>
 
                 {isOpen && (
-                  <div className="px-7 sm:px-8 pb-7 pt-4 text-sm sm:text-base text-gray-300 leading-relaxed border-t border-white/10 bg-[#171717]">
+                  <div className="px-5 sm:px-8 pb-6 pt-4 text-xs sm:text-base text-gray-300 leading-relaxed border-t border-white/10 bg-[#171717]">
                     {faq.answer}
                   </div>
                 )}

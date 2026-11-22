@@ -962,19 +962,21 @@ export const IsometricBackground: React.FC = () => {
       // Completely transparent canvas background so diorama floats seamlessly over Hero
       ctx.clearRect(0, 0, width, height);
 
-      // Responsive scale: fits the full height of the Hero comfortably without cut-off
-      const availableH = Math.max(300, height - 60);
-      const scale = Math.min(38, Math.max(20, availableH / 13.5));
+      const isDesktop = width >= 1024;
+      const availableH = Math.max(240, height - 40);
+
+      // Scale: on desktop fits height with breathing room; on mobile fits both width and height
+      const scale = isDesktop
+        ? Math.min(38, Math.max(20, availableH / 13.5))
+        : Math.min(24, Math.max(14, Math.min(width / 16.5, availableH / 14.0)));
 
       // On desktop, position diorama on the right half so text on the left has breathing room
-      const isDesktop = width >= 1024;
       const targetXRatio = isDesktop ? 0.68 : 0.5;
 
-      const originX = width * targetXRatio - pointerRef.current.x * 16;
-      const originY = height * 0.52 - pointerRef.current.y * 10;
+      const originX = width * targetXRatio - pointerRef.current.x * 12;
+      const originY = height * 0.52 - pointerRef.current.y * 8;
 
-      // Soft opacity on smaller viewports so overlaid text remains completely legible
-      ctx.globalAlpha = isDesktop ? 1.0 : 0.4;
+      ctx.globalAlpha = 1.0;
 
       // MODULE 2: TOP-LEFT PLATFORM
       drawRoundedIsoSlab(-4.7, -2.0, 0, 0.42, 3.2, 3.4, 0.5, originX, originY, scale, {
