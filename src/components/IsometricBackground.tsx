@@ -557,11 +557,17 @@ export const IsometricBackground: React.FC = () => {
       const armW = 11 * s;
       const armH = 4.2 * s;
       const armR = 2.1 * s;
-      if (typeof (ctx as any).roundRect === "function") {
-        (ctx as any).roundRect(armX, armY, armW, armH, armR);
-      } else {
-        ctx.rect(armX, armY, armW, armH);
-      }
+      ctx.beginPath();
+      ctx.moveTo(armX + armR, armY);
+      ctx.lineTo(armX + armW - armR, armY);
+      ctx.arcTo(armX + armW, armY, armX + armW, armY + armR, armR);
+      ctx.lineTo(armX + armW, armY + armH - armR);
+      ctx.arcTo(armX + armW, armY + armH, armX + armW - armR, armY + armH, armR);
+      ctx.lineTo(armX + armR, armY + armH);
+      ctx.arcTo(armX, armY + armH, armX, armY + armH - armR, armR);
+      ctx.lineTo(armX, armY + armR);
+      ctx.arcTo(armX, armY, armX + armR, armY, armR);
+      ctx.closePath();
       ctx.fillStyle = "#FFFFFF";
       ctx.fill();
       ctx.strokeStyle = "#1D1D1D";

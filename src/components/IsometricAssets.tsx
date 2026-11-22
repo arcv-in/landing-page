@@ -22,6 +22,27 @@ const project = (p: Point3D, ox: number, oy: number, scale: number): Point2D => 
   y: oy + ((p.x + p.y) * SIN_30 - p.z) * scale,
 });
 
+const drawRoundedRect = (
+  ctx: CanvasRenderingContext2D,
+  x: number,
+  y: number,
+  w: number,
+  h: number,
+  r: number
+) => {
+  ctx.beginPath();
+  ctx.moveTo(x + r, y);
+  ctx.lineTo(x + w - r, y);
+  ctx.arcTo(x + w, y, x + w, y + r, r);
+  ctx.lineTo(x + w, y + h - r);
+  ctx.arcTo(x + w, y + h, x + w - r, y + h, r);
+  ctx.lineTo(x + r, y + h);
+  ctx.arcTo(x, y + h, x, y + h - r, r);
+  ctx.lineTo(x, y + r);
+  ctx.arcTo(x, y, x + r, y, r);
+  ctx.closePath();
+};
+
 const drawIsoBox = (
   ctx: CanvasRenderingContext2D,
   center: Point3D,
@@ -478,12 +499,7 @@ export const IsoRobotAssistant: React.FC = () => {
         ctx.save();
         ctx.translate(11 * s, 2 * s);
         ctx.rotate(-0.35 + wave * 0.05);
-        ctx.beginPath();
-        if (typeof (ctx as any).roundRect === "function") {
-          (ctx as any).roundRect(0, -3 * s, 12 * s, 5 * s, 2.5 * s);
-        } else {
-          ctx.rect(0, -3 * s, 12 * s, 5 * s);
-        }
+        drawRoundedRect(ctx, 0, -3 * s, 12 * s, 5 * s, 2.5 * s);
         ctx.fillStyle = "#FFFFFF";
         ctx.fill();
         ctx.strokeStyle = "#1D1D1D";
@@ -494,12 +510,7 @@ export const IsoRobotAssistant: React.FC = () => {
         // Left Arm resting
         ctx.save();
         ctx.translate(-11 * s, 2 * s);
-        ctx.beginPath();
-        if (typeof (ctx as any).roundRect === "function") {
-          (ctx as any).roundRect(-10 * s, -1 * s, 10 * s, 4.5 * s, 2.25 * s);
-        } else {
-          ctx.rect(-10 * s, -1 * s, 10 * s, 4.5 * s);
-        }
+        drawRoundedRect(ctx, -10 * s, -1 * s, 10 * s, 4.5 * s, 2.25 * s);
         ctx.fillStyle = "#E8E8E8";
         ctx.fill();
         ctx.strokeStyle = "#1D1D1D";
