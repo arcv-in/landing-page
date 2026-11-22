@@ -50,17 +50,17 @@ export const ArcvLogo: React.FC<ArcvLogoProps> = ({
         {/* Obsidian Base Chassis */}
         <rect width="512" height="512" rx="75" fill="#1D1D1D" />
 
-        {/* Official Triangle with Scroll Rotation anchored to visual centroid (256, 290) */}
+        {/* Official Triangle Centered Exactly at (256, 256) for Flawless 360° Rotation */}
         <g
           style={{
-            transformOrigin: "256px 290px",
+            transformOrigin: "256px 256px",
             transform: `rotate(${rotation}deg)`,
             willChange: rotateOnScroll ? "transform" : "auto",
             transition: rotateOnScroll ? "transform 0.05s linear" : "none",
           }}
         >
           <path
-            d="M233.849 134.5C243.472 117.833 267.528 117.833 277.151 134.5L396.229 340.75C405.852 357.417 393.823 378.25 374.578 378.25H136.421C117.176 378.25 105.148 357.417 114.771 340.75L233.849 134.5Z"
+            d="M234.349 105.417C243.972 88.75 268.028 88.75 277.651 105.417L396.729 311.667C406.352 328.334 394.323 349.167 375.078 349.167H136.921C117.676 349.167 105.648 328.334 115.271 311.667L234.349 105.417Z"
             fill="#F0FD63"
           />
         </g>
