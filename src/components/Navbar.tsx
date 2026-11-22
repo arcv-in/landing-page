@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { ArrowRight, Menu, X } from "lucide-react";
+import { ArcvLogo } from "./ArcvLogo";
 
 export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -11,11 +12,7 @@ export function Navbar() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
         {/* Brand Logo */}
         <a href="#" className="flex items-center gap-2.5 group">
-          <div className="w-9 h-9 rounded-xl bg-[#1D1D1D] flex items-center justify-center text-[#F0FD63] font-bold text-lg shadow-sm group-hover:scale-105 transition-transform">
-            <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
-              <polygon points="12 2 22 20 2 20" />
-            </svg>
-          </div>
+          <ArcvLogo size={38} rotateOnScroll={true} className="group-hover:scale-105 transition-transform" />
           <div className="flex flex-col">
             <span className="font-extrabold text-2xl tracking-tight text-[#1D1D1D]">
               arcv
