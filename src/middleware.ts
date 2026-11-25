@@ -10,7 +10,7 @@ const tracker = new VoightTraceCollector({
 });
 
 // 2. Middleware não-bloqueante na borda (zero impacto na latência do usuário)
-export const middleware = tracker.nextMiddleware(async (request: NextRequest) => {
+export const middleware = tracker.nextMiddleware(async (_request: NextRequest) => {
     // Lógica customizada de autenticação ou roteamento da sua aplicação
     return NextResponse.next();
 });
