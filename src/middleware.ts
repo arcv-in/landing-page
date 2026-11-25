@@ -1,6 +1,5 @@
 // middleware.ts (Next.js App Router & Pages Router)
 import { NextResponse } from 'next/server';
-import type { NextRequest } from 'next/server';
 import { VoightTraceCollector } from '@voight-trace/voighttrace-sdk';
 
 // 1. Inicializa o coletor seguro a partir de variáveis de ambiente
@@ -10,7 +9,7 @@ const tracker = new VoightTraceCollector({
 });
 
 // 2. Middleware não-bloqueante na borda (zero impacto na latência do usuário)
-export const middleware = tracker.nextMiddleware(async (_request: NextRequest) => {
+export const middleware = tracker.nextMiddleware(async () => {
     // Lógica customizada de autenticação ou roteamento da sua aplicação
     return NextResponse.next();
 });
